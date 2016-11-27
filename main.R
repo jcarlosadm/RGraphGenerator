@@ -6,4 +6,4 @@ dir.create("output", showWarnings = FALSE)
 
 repoAnalysis = read.csv(FILENAME, header = FALSE)
 
-source("repoAnalysis.R", echo = TRUE)
+source("repoAnalysis.R")

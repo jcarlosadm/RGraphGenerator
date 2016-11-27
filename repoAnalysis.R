@@ -1,5 +1,10 @@
+countMax = length(unique(repoAnalysis$V1))
+count = as.integer(0)
 
 for (repository in unique(repoAnalysis$V1)) {
+	count = count + 1
+	print(paste0(formatC(count*100/countMax,format="f",digits=2),"%"))
+
 	a <- repoAnalysis[which(repoAnalysis$V1 == repository),]
 	
 	FOLDERPATH = paste("output",repository,sep="/")
