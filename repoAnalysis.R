@@ -23,9 +23,21 @@ for (repository in unique(repoAnalysis$V1)) {
 
 		FILEPATH = paste(FOLDERPATH, paste(declaration,"graph.png", sep = "_"), sep = "/")
 
-		res <- try(png(FILEPATH, width=WDT, height=10, units="in", res=200))
+		res <- try(png(FILEPATH, width=WDT, height=10, units="in", res=200), silent = TRUE)
 
-		if(inherits(res, "try-error")){ next }
+		if(inherits(res, "try-error")){
+		
+			print("error to create png image. creating svg image...")
+			
+			FILEPATH = paste(FOLDERPATH, paste(declaration, "graph.svg", sep = "_"), sep = "/");
+			
+			res <- try(svg(FILEPATH, width=WDT, height=10), silent = TRUE)
+			
+			if(inherits(res, "try-error")) {
+				print("error to create svg image. skipping to next graph")
+				next
+			}
+		}
 
 		par(mar=c(18, 1, 1, 1) + 1.1)
 
